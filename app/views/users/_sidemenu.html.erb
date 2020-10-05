@@ -25,14 +25,15 @@
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
         </button>
         <% end %>
-
+        
+      <!-- ログインユーザー以外の画面に編集ボタンを追加-->
       <% else %>
         <%= link_to user_path(current_user.id) do %>
         <button class="btn btn-default btn-block">
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
         </button>
         <% end %>
-
+      <!-- ここまで -->
       <% end %>
 
     </div>

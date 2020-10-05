@@ -44,6 +44,7 @@ class BooksController < ApplicationController
     end
   end
 
+# 　削除できない問題を修正
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
