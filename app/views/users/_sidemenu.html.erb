@@ -25,6 +25,14 @@
         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
         </button>
         <% end %>
+
+      <% else %>
+        <%= link_to user_path(current_user.id) do %>
+        <button class="btn btn-default btn-block">
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+        </button>
+        <% end %>
+
       <% end %>
 
     </div>
