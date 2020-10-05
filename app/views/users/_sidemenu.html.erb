@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+    <h2>User info</h2>
+
+    <div class="profile-container">
+
+      <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <table class = "table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+
+      <% if user.id == current_user.id %>
+        <%= link_to edit_user_path(user) do %>
+        <button class="btn btn-default btn-block">
+        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+        </button>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <%= form_with model:book, local:true do |f| %>
+      <h2>New book</h2>
+      <div class ="field">
+      <label>Title</label></br>
+      <%= f.text_field :title, class:'nav-justified'%>
+      </div>
+
+      <div class = "field">
+      <label>Opinion</label></br>
+      <%= f.text_area :body, class:'nav-justified' %>
+      </div>
+    <%= f.submit 'Create Book', class:'nav-justified btn btn-primary' %>
+    </div>
+<% end %>

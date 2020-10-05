@@ -1,0 +1,31 @@
+<div class ="container">
+  <div class ="row">
+    <div class ="col-xs-6 col-xs-offset-3">
+      <h1>Editing Book</h1>
+      <%= form_with model:@book, local: true do |f| %>
+      <% if @book.errors.any? %>
+          <h3 id ="error">入力した内容にerrorが<%= @book.errors.count %>件あります</h3>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class = "field row">
+        <label>Title</label></br>
+        <%= f.text_field :title ,value:@book.title, class:"nav-justified" %>
+        </div>
+        <div class = "field row">
+        <label>Opinion</label></br>
+        <%= f.text_area :body ,value:@book.body, class:"nav-justified" %>
+        </div>
+        <div class = "field row">
+        <%= f.submit 'Update Book', class:'nav-justified btn btn-primary' %>
+        </div>
+        <%= link_to "Show", book_path(@book.id) %> |
+        <%= link_to "Back", books_path %>
+        <% end %>
+    </div>  
+  </div>
+</div>

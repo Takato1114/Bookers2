@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookers</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+    <div class="header" id="header">
+      <nav class="navbar navbar-inverse" role="navigation" id="slide-nav">
+        <div class="container relative">
+          <div class="navbar-header">
+            <h3 class="navbar-nav"><font color="#ffffff">
+            Bookers</font>
+            </h3>
+          </div>
+          <div id="slidemenu">
+            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+              <% if user_signed_in? %>
+                <li class="">
+                  <%= link_to user_path(current_user.id) do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to users_path do %>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　Users
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to books_path do %>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　Books
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to destroy_user_session_path, method: :delete do%>
+                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>　logout
+                  <% end %>
+                </li>
+
+              <% else %>
+                <li class="">
+                  <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　Home
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to home_about_path do %>
+                  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>　About
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to new_user_registration_path do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　sign up
+                  <% end %>
+                </li>
+                <li class="">
+                  <%= link_to new_user_session_path do %>
+                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>　login
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  <div class="container">
+  <body>
+    <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+    <%= yield %>
+  </body>
+  </div>
+</html>

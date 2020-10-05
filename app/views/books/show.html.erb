@@ -1,0 +1,66 @@
+<%= render 'users/sidemenu', {user:@user, book:@book} %>
+
+<% if @bookone.user.id == current_user.id %>
+<div class="col-xs-9">
+  <h2>Book detail</h2>
+  <table class ="table">
+    <thead>
+      <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="5"></th>
+      </tr>
+    </thead>
+    <body>
+    <tr>
+      <td>
+        <%= link_to user_path(@bookone.user.id) do%>
+        <%= attachment_image_tag @bookone.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %>
+        <br>
+        <%= @bookone.user.name %>
+        <% end %>
+      </td>
+      <td><%= @bookone.title %></td>
+      <td><%= @bookone.body %></td>
+      <td><%= link_to edit_book_path(@bookone.id) do%>
+      <button type="button" class="btn btn-success">Edit</button><% end %></td>
+      <td><%= link_to book_path(@bookone.id) ,method: :delete, data: { confirm: "Are you sure?" } do %>
+      <button type="button" class="btn btn-danger">Destroy</button><% end %></td>
+    </tr>
+    </body>
+  </table>
+
+<% else %>
+<div class="col-xs-9">
+  <h2>Book detail</h2>
+  <table class ="table">
+    <thead>
+      <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="3"></th>
+      </tr>
+    </thead>
+    <body>
+    <tr>
+      <td>
+        <%= link_to user_path(@bookone.user.id) do%>
+        <%= attachment_image_tag @bookone.user, :profile_image,  format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %>
+        <br>
+        <%= @bookone.user.name %>
+        <% end %>
+      </td>
+      <td><%= @bookone.title %></td>
+      <td><%= @bookone.body %></td>
+    </tr>
+    </body>
+  </table>
+
+<% end %>
+</div>
+</div>
+</div>
